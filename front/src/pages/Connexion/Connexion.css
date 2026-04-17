@@ -1,0 +1,99 @@
+.connexion-body{
+background:#e9e5df;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+
+
+
+
+
+.connexion-container{
+display:flex;
+width:900px;
+background:#f5f3f0;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+overflow:hidden;
+}
+.photo {
+  width: 45%;
+  position: relative;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo p   {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 28px;
+}
+
+/* Partie droite */
+.connexion-main-content {
+  width: 55%;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border:1px solid #c8a96a;
+}
+
+.connexion-main-content h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1d2235;
+}
+
+.form-label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+#email , #password {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #999;
+  outline: none;
+  font-size: 16px;
+}
+
+.btn-primary {
+  width: 100%;
+  margin-top: 30px;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background: #d2ad67;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #c59a4d;
+}
+
+.links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.links a {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}

@@ -1,0 +1,199 @@
+
+
+.faq-container {
+  padding: 40px 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 auto;
+  min-height: 100vh;
+  align-items: center;
+}
+
+/* Search Section */
+.search-wrapper {
+  display: flex;
+  background: white;
+  width: 70%;
+  border: 1px solid #c3c3c3;
+  border-radius: 10px;
+  padding: 5px 15px;
+  margin: 40px auto;
+}
+
+.search-wrapper input{
+  flex: 1;
+  
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Tabs */
+.category-line {
+  position: relative;
+  display: flex; /* Use flex to center child elements */
+  justify-content: center;
+  align-items: center;
+  margin: 60px auto; /* Increased margin for breathing room */
+  width: 100%;
+}
+
+#hr-bg {
+  position: absolute;
+  width: 90%; /* Adjust width as needed */
+  height: 1px;
+  background-color: #d8d4cd;
+  border: none;
+  z-index: 1; /* Place line behind buttons */
+}
+
+.category-tabs {
+  position: relative; /* Changed from absolute to relative */
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  z-index: 2; /* Place buttons above the line */
+  background-color: transparent; /* Allows line to show between gaps */
+}
+
+.tab {
+  padding: 8px 25px;
+  width: 130px;
+  border-radius: 6px;
+  border: none;
+  background: #ccc;
+  color: #2C406F;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+  outline: 4px solid var(--bg); 
+}
+
+.tab.active {
+  background: #2C406F;
+  color: white;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 30px 0;
+}
+
+/* Accordion */
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Spacing between the FAQ cards */
+  background-color: transparent;
+}
+
+.accordion-item {
+  background-color: #ffffff; /* Pure white background */
+  border: 1px solid #d1d5db; /* Light grey border */
+  border-radius: 8px; /* Rounded corners like the image */
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Optional subtle shadow */
+  margin: 10px 15%;
+}
+
+.accordion-header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  
+  /* Font styling from the image */
+  color: #2b416d; /* Dark navy/blue font */
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* This adds the line between header and body ONLY when open */
+.accordion-item.open .accordion-header {
+  border-bottom: 1px solid #e5e7eb; 
+}
+
+.accordion-body {
+  padding: 20px 24px;
+  /* Very light cream/grey background for the body as seen in image */
+  background-color: #fdfbf8; 
+}
+
+.accordion-body p {
+  margin: 0;
+  color: #6b7280; /* Muted grey for the answer text */
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Arrow styling */
+.arrow {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+  color: #2b416d; /* Match the header color */
+}
+
+.arrow.up {
+  transform: rotate(180deg);
+}
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.arrow.up {
+  transform: rotate(180deg);
+}
+
+/* Support Box */
+.faq-still {
+  background: white;
+  border: 1px solid #d1d5db ;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  margin: 40px 7.5%;
+}
+
+.faq-still h2 {
+  color: #2C406F;
+  margin-bottom: 15px;
+  font-size: 2.4rem;
+  font-weight: 500;
+  font-family: 'Libre Baskerville' ,serif;
+}
+
+.faq-still p {
+  color: #646669;
+  margin-bottom: 35px;
+  font-family: 'Instrument Sans',sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+
+}
+
+.faq-contact-btn {
+  background-color: #2C406F;
+  color: white;
+  font-size: 1.35rem;
+  padding: 5px 30px;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-bottom: 40px;
+}
+
+.faq-contact-btn:hover {
+  opacity: 0.9;
+}

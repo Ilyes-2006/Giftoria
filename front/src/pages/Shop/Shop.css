@@ -1,0 +1,187 @@
+
+
+.shop-page{
+    align-items: center;
+}
+
+
+.shop-page-main-navbar {
+  margin: 30px 100px 5px 100px ;  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #F5F1EB;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  gap: 15px;
+}
+
+.shop-search-input {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sort-label {
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+/* Base Button */
+.btn-choice {
+  border: 1px solid #eee;
+  background: #f9f9f9;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Prevents text from wrapping to 2 lines */
+}
+
+/* THE FIX: Fixed width for the price button */
+.price-btn {
+  min-width: 155px; /* Adjust this value so "Price: High-Low" fits perfectly */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Active State */
+.btn-choice.active {
+  background-color: #2C406F;
+  color: #ffffff;
+  
+}
+
+.btn-choice i {
+  font-size: 12px;
+}
+.shop-layout-container {
+  display: flex;
+  margin: 0 92px; /* Your specific side margins */
+  gap: 5px;       /* The 5px space between sections */
+  align-items: stretch; /* Ensures both sections have the same height */
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+/* The container for the text and placeholder */
+.price-content-wrapper {
+  display: inline-grid; 
+  vertical-align: middle;
+}
+
+/* This targets both spans inside the wrapper */
+.price-text, 
+.price-placeholder {
+  grid-area: 1 / 1; /* This stacks them directly on top of each other */
+  white-space: nowrap;
+}
+
+/* This is the secret sauce: it's invisible but holds the space */
+.price-placeholder {
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Common Section Styling */
+.filter-section, .products-display-section {
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #eaeaea; /* Optional subtle border */
+  padding: 25px;
+}
+
+/* Left Section */
+.filter-section {
+  flex: 0 0 25%; 
+}
+
+/* Right Section */
+.products-display-section {
+  flex: 0 0 calc(75% - 5px); 
+}
+
+/* Sidebar Items */
+.filter-item {
+  padding: 15px 10px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #2C406F;
+  transition: all 0.2s ease;
+  margin: 0;
+  text-align: center;
+}
+
+.filter-item:hover {
+  color: white;
+  background-color: #2C406F;
+  border-radius: 9px;
+   font-weight: 600;
+}
+
+.active-type {
+     color: white;
+  background-color: #2C406F;
+  border-radius: 9px;
+  font-weight: 600;
+}
+
+/* The "Incomplete" HR */
+.filter-divider {
+  width: 80%;       /* Not completed to the edge */
+  margin: 0 auto;   /* Centered */
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+/* Products Grid Layout */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .shop-hero h1 {
+    font-size: 2.5em;
+  }
+  .shop-hero p {
+    font-size: 1.2em;
+    max-width: 100%;
+    padding: 0 20px;
+  } 
+    .search-input {
+        width: 100%;
+    }
+    .nav-right {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .price-btn {
+        width: 100%;
+        min-width: unset; /* Remove fixed width on mobile */
+    }
+
+      .shop-layout-container {
+    margin: 0 20px; /* Smaller margins on mobile */
+    flex-direction: column;
+  }
+  .filter-section, .products-display-section {
+    flex: 0 0 100%;
+  }
+}

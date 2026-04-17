@@ -1,0 +1,32 @@
+.page-hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 100px;
+}
+.page-hero h1{
+    font-family: 'Playfair Display', serif;
+    font-size: 4em;
+    font-weight: 500;
+    color: #243660;
+    margin-bottom: 20px;
+}
+.page-hero p{
+    font: Instrument Sans, sans-serif;
+    font-size: 1.68em;
+    color: #2F2E2E;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+.page-hero-divider {
+  width: 87%;
+  height: 2px;
+  background-color: #d8d4cd;
+  border: none;
+  margin-top: 30px;
+  margin-bottom: 50px;
+
+}
