@@ -11,8 +11,8 @@ function Footer() {
       
             <div className="footer-left">
                 <div className="footer-logo">
-                    <img src="../assets/gift.PNG   " alt="Gift Icon" className="icon" />
-                    <img src="assets/bf5b26281ee7e1180b643f11f73fc9fa8090e2f9.png" alt="Giftoria" className="giftoria" />
+                    <img src="../assets/gift.png" alt="Gift Icon" className="icon" />
+                    <img src="../assets/giftoria-logo-text.png" alt="Giftoria" className="giftoria" />
                 </div>
                 <div className="social-links">
                     <a href="#" className="social-link" aria-label="Facebook">

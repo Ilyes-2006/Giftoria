@@ -9,11 +9,10 @@
 }
 
 .delivery-info-section {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #cccccc;
-border-radius: 20px;
+width: 60%;
+display: flex;
+flex-direction: column;
+border: 1px solid #cccccc;
 background-color: white;
 padding: 20px 40px;
   
@@ -54,7 +53,7 @@ padding: 20px 40px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-select{
+.checkout-select{
   max-height: 50px;
   overflow-y: auto;
 }

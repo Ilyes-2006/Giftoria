@@ -1,0 +1,87 @@
+/* Dashboard Main Wrapper */
+.admin-dashboard-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* 1. Stats Grid Layout */
+.admin-stats-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: 100%;
+    gap: 20px;
+}
+
+/* 2. Section Groups (Users & Products) */
+.admin-section-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.admin-section-divider{
+    margin-top: 40px;
+    width: 100%;
+    border: 1px solid #cccccc;
+    margin-bottom: 20px;
+}
+
+.admin-section-title {
+    font-size: 1.75rem;
+    font-family: 'Playfair Display', sans-serif ;
+    color: #2C406F;
+    font-weight: 500;
+    /* margin-top: 10px; */
+    position: relative;
+    padding-bottom: 20px;
+}
+
+/* 3. Users List (Flex Row) */
+.admin-users-list {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to next line if screen is narrow */
+    gap: 40px;
+    
+}
+/* 4. Products List (Vertical Column) */
+.admin-products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 5. Navigation Link (Show More) */
+.admin-link-more {
+    align-self: center; /* Centers the button horizontally */
+    background: transparent;
+    border: 1px solid transparent;
+    color: #7f8c8d;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin-bottom: 0;
+}
+
+.admin-link-more:hover {
+    color: #3498db;
+    background-color: #f0f7ff;
+    border-color: #d6e0f5;
+}
+
+/* Simple Animation for Page Entrance */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

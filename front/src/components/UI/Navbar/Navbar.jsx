@@ -33,7 +33,7 @@ function Navbar({isLoggedIn} ) {
                 <NavLink to="/">
                     <img src="../assets/gift.png" alt="Gift icon" className="gift-icon" />
                 </NavLink>
-                <img src="../assets/bf5b26281ee7e1180b643f11f73fc9fa8090e2f9.png" alt="Giftoria logo" className="logo-image" />
+                <img src="../assets/giftoria-logo-text.png" alt="Giftoria logo" className="logo-image" />
             </div>
             <div className="search-bar">
                 <div className="search-field">

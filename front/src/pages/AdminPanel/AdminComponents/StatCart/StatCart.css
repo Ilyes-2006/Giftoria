@@ -1,0 +1,32 @@
+.admin-stat-card {
+    /* width: 250px; */
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid #cccccc;
+    flex: 0 1 250px;
+    box-sizing: border-box;
+    max-width: 350px;
+    min-width: 250px;
+    transition: transform 0.3s ease;
+}
+
+.admin-stat-label {
+    display: block;
+    color: #868686;
+    font-family: 'Inter',sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+.admin-stat-card hr{
+    border: 1px solid #cccccc;
+}
+.admin-stat-value {
+    font-size: 2.5rem;
+    color: #2C406F;
+    margin: 0;
+    font-weight: 600;
+
+}
