@@ -1,0 +1,48 @@
+.admin-user-card {
+    background: #ffffff;
+    flex: 1;
+    min-width: 300px;
+    max-width: 47%;
+    border-radius: 15px;
+    border: 1px solid #cccccc;
+    overflow: hidden;
+    padding: 15px 0;
+}
+
+.admin-user-info {
+    padding: 10px 20px;
+}
+
+.admin-user-info h4 {
+    margin: 0 0 10px 0;
+    color: #2C406F;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: 'Inter',sans-serif;
+}
+
+.admin-user-info p {
+    margin: 0;
+    color: #95a5a6;
+    font-size: 1.15rem;
+}
+
+.admin-card-footer {
+    padding: 13px 0 0 0 ;
+    text-align: center;
+}
+
+.admin-btn-remove {
+    background-color: #f1f2f6;
+    color: #2C406F;
+    border: 1px solid #cccccc;
+    padding: 5px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-btn-remove:hover {
+    background-color: #ffeae8;
+    color: #e74c3c;
+}

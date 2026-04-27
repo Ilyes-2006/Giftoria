@@ -1,0 +1,122 @@
+:root {
+    --admin-sidebar-bg: #ffffff;
+    --admin-primary-text: #2C406F;
+    --admin-secondry-text: #646669;
+    --admin-accent-blue: #d6e0f5;
+    --admin-button-bg: #e0e0e0;
+    --admin-border-color: #cccccc;
+}
+
+.admin-main-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg-color);
+    font-family: 'Playfair Display', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 50px 40px;
+    margin: 0;
+}
+
+/* Sidebar Styling */
+.admin-sidebar {
+    align-items: center;
+    width: 23%;
+
+    min-width: 100px;
+    
+    background: var(--admin-sidebar-bg);
+    padding: 20px ;
+    border: 1px solid var(--admin-border-color);
+    border-radius: 20px;
+   
+    margin: 0;
+    flex-shrink: 0;
+}
+
+
+.admin-logo-box {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+.admin-giftoria-image{
+    width: 50px;
+    margin-right: -7px;
+}
+.admin-giftoria-logo{
+    height: 65px;
+    margin-left: -7px;
+}
+
+.admin-nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.admin-nav-item {
+    padding: 12px 35px;
+    border: none;
+    background: #fdf8f2;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.admin-nav-item.active {
+    background-color: var(--admin-accent-blue);
+
+}
+
+.admin-nav-item:hover {
+    background-color: #e8effd;
+}
+/* Main Content */
+.admin-content-wrapper {
+    flex-grow: 1;
+   
+    padding: 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+}
+
+.admin-header-section {
+    text-align: center;
+    margin-bottom: 40px;
+   
+}
+
+.admin-page-title {
+    font-size: 32px;
+    color: #243660;
+    margin-bottom: 8px;
+    font-family: 'Playfair Display' , sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+}
+.admin-page-subtitle {
+    color: #646669;
+    font-size: 1.35rem;
+}
+
+
+
+
+.admin-subpage-content {
+    margin-top: 20px;
+    /* Ensure the subpage takes up the rest of the space */
+    width: 100%;
+    min-height: 200px;
+}
+
+.admin-logout {
+    margin-top: 20px;
+    color: #e74c3c;
+}

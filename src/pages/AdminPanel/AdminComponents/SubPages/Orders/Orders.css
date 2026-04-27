@@ -1,0 +1,53 @@
+/* Container Layout */
+.OrdersPage-wrapper {
+  /* padding: 0; */
+  margin-top: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* width: 100%; */
+}
+
+
+
+.OrdersPage-content{
+  gap: 10px;
+}
+
+/* --- THE RESPONSIVE GRID --- */
+
+.OrdersPage-grid {
+  display: grid;
+  /* DEFAULT: 2 columns */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px;
+  max-width: 800px;
+  margin: 20px auto 0 auto;
+}
+
+/* Mobile: Switch to 1 column for small screens (less than 768px) */
+@media (max-width: 767px) {
+  .OrdersPage-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .OrdersPage-wrapper {
+    padding: 15px;
+  }
+}
+
+/* Tablet/Small Desktop: Ensure 2 columns (768px to 1399px) */
+@media (min-width: 768px) {
+  .OrdersPage-wrapper {
+    padding: 40px;
+  }
+  
+  .admin-section-title {
+    font-size: 28px;
+  }
+}
+
+/* Large Desktop: 3 columns (1400px and up) */
+@media (min-width: 1400px) {
+  .OrdersPage-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

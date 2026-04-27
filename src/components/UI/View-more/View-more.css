@@ -1,0 +1,59 @@
+.heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto ;
+ 
+  
+}
+.heading::before,
+.heading::after {
+  content: '';
+  display: block;
+  width: 30%;
+  height: 2px;
+  background: #d8d4cd;
+}
+#ready::after{
+  width: 18%;
+}
+.heading h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+  font-family: 'Libre Baskerville', serif;
+  color: #1F2A44;
+}
+
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+
+}
+
+.view-more-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-decoration: none ;
+}
+
+
+.view-more-link {
+  color: #2C406F;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.view-more-link:hover {
+  text-decoration: none   ;
+}

@@ -1,0 +1,35 @@
+/* Container for the whole subpage */
+.users-page-container {
+  /* padding: 40px; */
+  background-color: #f5f2eb; /* Matching the beige/off-white background */
+  min-height: 100vh;
+  font-family: 'Georgia', serif; /* Matching the serif font style shown */
+}
+
+
+
+.subpage-stats-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+
+
+/* Grid layout for the UserCards */
+.users-grid-layout {
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr);  */
+  display: flex;
+flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustment for smaller screens */
+@media (max-width: 768px) {
+  .users-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}

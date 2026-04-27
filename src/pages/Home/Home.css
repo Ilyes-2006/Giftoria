@@ -1,0 +1,267 @@
+.home-page {
+  min-height: 100vh;
+  background-color: #F5F1EB;
+  margin: 0 0;
+  padding-top: 40px;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 60px 24px;
+ 
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5vw, 4.8rem);
+  line-height: 1.25;
+  margin: 0;
+  font-weight: 500;
+  color: #1F2A44;
+}
+
+.hero-title span {
+  display: block;
+  font-weight: 500;
+}
+
+.hero p {
+  font-size: 1.6rem;
+  color: #2F2E2E;
+  margin: 0;
+}
+
+.hero-action {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 6px;
+}
+
+.discover-btn {
+  background-color: #2C406F;
+  color: white;
+  font-size: 1.4rem;  
+  font-weight: 600;  
+  border: none;
+  padding: 10px 70px;
+  margin: 30px 25%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.discover-btn:hover {
+  transform: translateY(-2px);
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: -74px;
+}
+
+.hero-image img {
+  width: min(100%, 720px);
+  max-width: 100%;
+  object-fit: contain;
+  background: transparent;
+  filter: drop-shadow(0 28px 32px rgba(0, 0, 0, 0.332));
+}
+
+/* Section Layout */
+#products {
+  padding: 3rem 1rem;
+}
+
+.cards-section {
+  background: transparent;
+}
+
+.cards-section .cards-container {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  background: white;
+  border: #cccccc 0.5px solid ;
+  border-radius: 20px;
+  padding: 3rem 2rem 2rem;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto ;
+ 
+  
+}
+.heading::before,
+.heading::after {
+  content: '';
+  display: block;
+  width: 30%;
+  height: 2px;
+  background: #d8d4cd;
+}
+#ready::after{
+  width: 18%;
+}
+.heading h2 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+  font-family: 'Libre Baskerville', serif;
+  color: #1F2A44;
+}
+
+
+
+/* Status Messages */
+.status-message {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.status-message.loading {
+  color: var(--primary);
+}
+
+.status-message.error {
+  color: #d32f2f;
+  background: #ffebee;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.why{
+  margin: 50px 15px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+
+.feature-card {
+  background: var(--surface);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+
+
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.feature-card p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.9rem;
+}
+.ready-section{
+  
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 30px auto 0 auto;
+
+}
+.join{
+  text-align: center;
+  align-items: center;
+  background-color: white;
+  margin: 30px 7%;
+  padding: 30px 10px;
+  border: #cccccc 0.5px solid ;
+  border-radius: 20px;
+}
+.join p{
+  font-family: 'Instrument Sans', serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #1F2A44;
+  margin: 12px;
+}
+.join button{
+  background-color: #2C406F;
+  color:white;
+  border-radius: 18px;
+  margin-bottom:20px;
+  padding:6px 30px ;
+  border: none;
+  font-size: 1.4rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 24px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-action {
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .hero-image {
+    text-align: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .section {
+    padding: 2rem 1rem;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
