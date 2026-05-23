@@ -1,18 +1,20 @@
 .product-card {
   background: var(--surface);
   border: 1px solid #f0ece4;
-  border-radius: 40px;
+  border-radius: 30px;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
-  min-height: 420px;
+  min-height: 350px;
   height: 100%;
-  box-shadow: -4px 10px 5px rgba(0, 0, 0, 0.141), 0 8px 18px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
 }
 
 .product-card:hover {
   transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
 .product-image-placeholder {

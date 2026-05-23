@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Giftoria Frontend
 
 A React + Vite frontend for the Giftoria ecommerce project.
@@ -18,3 +19,7 @@ Start the backend first from `back/` so product data can load from `http://local
 - The app uses React components, a header/footer layout, product cards, and a newsletter form.
 - Product data is fetched from the backend API.
 - If your backend runs on a different port, set `VITE_API_URL` in a `.env` file.
+=======
+# Giftoria
+giftoria
+>>>>>>> 37f54e0b1a96198f4af8b5deb4ba7e79b844f868

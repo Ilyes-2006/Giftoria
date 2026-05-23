@@ -3,7 +3,7 @@ import './Users.css';
 import StatCart from '../../StatCart/StatCart'; 
 import UserCart from '../../UserCart/UserCart'; 
 
-export default function Users ({ users }) {
+export default function Users ({ users, onDeleteUser }) {
 
   const isDataValid = Array.isArray(users);
   const userCount = isDataValid ? users.length : 0;
@@ -22,7 +22,7 @@ export default function Users ({ users }) {
         {/* 2. Only map if it's actually an array */}
         {isDataValid ? (
           users.map((user, index) => (
-            <UserCart key={index} user={user} />
+            <UserCart key={index} user={user} onRemove={onDeleteUser ? () => onDeleteUser(user.id) : null} />
           ))
         ) : (
           <p>No user data available.</p>

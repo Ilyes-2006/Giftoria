@@ -46,3 +46,136 @@
     background-color: #ffeae8;
     color: #e74c3c;
 }
+
+/* Floating Modal Overlay */
+.admin-user-floating-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(31, 42, 68, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+/* Floating Panel Card */
+.admin-user-floating-panel {
+  background-color: #ffffff;
+  border: 1px solid #e4e2df;
+  border-radius: 20px;
+  width: 90vw;
+  max-width: 440px;
+  padding: 28px;
+  box-shadow: 0 20px 45px rgba(31, 42, 68, 0.15);
+  animation: userModalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.admin-user-floating-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-user-floating-header h3 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #1F2A44;
+}
+
+.admin-user-floating-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.admin-user-floating-close-btn:hover {
+  color: #333;
+}
+
+.admin-user-floating-body p {
+  margin: 0 0 10px 0;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 15px;
+  color: #555555;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.admin-user-floating-danger-warning {
+  background-color: #ffebee;
+  border-left: 4px solid #f44336;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: #c62828 !important;
+  font-size: 13.5px !important;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.admin-user-floating-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.admin-user-btn-secondary,
+.admin-user-btn-danger {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  font-family: 'Instrument Sans', sans-serif;
+}
+
+.admin-user-btn-secondary {
+  background-color: #F5F1EB;
+  color: #2C406F;
+  border: 1px solid #d8d4cd;
+}
+
+.admin-user-btn-secondary:hover {
+  background-color: #e4e2df;
+}
+
+.admin-user-btn-danger {
+  background-color: #c62828;
+  color: #ffffff;
+}
+
+.admin-user-btn-danger:hover {
+  background-color: #b71c1c;
+  transform: translateY(-1px);
+}
+
+@keyframes userModalPop {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .admin-user-card {
+        max-width: 100%;
+        min-width: unset;
+        width: 100%;
+    }
+}

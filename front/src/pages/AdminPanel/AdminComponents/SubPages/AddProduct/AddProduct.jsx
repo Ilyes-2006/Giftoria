@@ -3,7 +3,7 @@ import './AddProduct.css';
 import StatCart from '../../StatCart/StatCart'; 
 import NewProduct from '../../NewProduct/NewProduct'; // Your form/creation component
 
-export default function AddProduct ({ products }){
+export default function AddProduct ({ products, onAddProduct }){
   const productCount = Array.isArray(products) ? products.length : 0;
 
   return (
@@ -20,7 +20,7 @@ export default function AddProduct ({ products }){
 
       {/* Content Section: Instead of mapping, we call the NewProduct component */}
       <div className="addproduct-form-wrapper">
-        <NewProduct />
+        <NewProduct onAddProduct={onAddProduct} />
       </div>
     </div>
   );

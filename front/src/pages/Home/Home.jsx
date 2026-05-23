@@ -7,7 +7,7 @@ import './Home.css';
 import Delivery from '../../components/UI/Delivery/Delivery';
 import ViewMore from '../../components/UI/View-more/View-more';
 
-export default function Home() {
+export default function Home({ user }) {
   
   
   const [newsletterStatus, setNewsletterStatus] = useState('');
@@ -43,14 +43,16 @@ export default function Home() {
           </h1>
           <p>Fast delivery across Algeria</p>
           <div className="hero-action">
-            <button className="discover-btn">Discover Gifts</button>
+            <Link to="/Shop">
+              <button className="discover-btn">Discover Gifts</button>
+            </Link>
           </div>
         </div>
         <div className="hero-image">
           <img src="../assets/gifts.png" alt="Gift selection" />
         </div>
       </section>
-      <ViewMore title="Find the Ideal Gift"></ViewMore>
+      <ViewMore title="Find the Ideal Gift" user={user}></ViewMore>
     
       <div className="why">
       <div className="heading">

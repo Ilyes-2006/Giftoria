@@ -3,7 +3,7 @@ import './Products.css';
 import StatCart from '../../StatCart/StatCart'; 
 import AdminProductCart from '../../AdminProductCart/AdminProductCart'; // Assuming you have a ProductCard component
 
-export default function Products ({ products }){
+export default function Products ({ products, onUpdateProduct, onDeleteProduct }){
   // Check if products exists and is an array to avoid .length errors
   const isDataValid = Array.isArray(products);
   const productCount = isDataValid ? products.length : 0;
@@ -24,8 +24,11 @@ export default function Products ({ products }){
       <div className="products-grid-layout">
         {isDataValid ? (
           products.map((product, index) => (
-            <AdminProductCart product={product}
-            
+            <AdminProductCart 
+              key={product.id || index}
+              product={product}
+              onEdit={onUpdateProduct ? (updatedData) => onUpdateProduct(product.id, updatedData) : null}
+              onRemove={onDeleteProduct ? () => onDeleteProduct(product.id) : null}
             />
           ))
         ) : (

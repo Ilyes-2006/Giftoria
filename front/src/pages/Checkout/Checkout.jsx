@@ -1,12 +1,14 @@
-  import React, { useState } from "react"; // Combined imports
+  import React, { useState, useRef, useEffect } from "react";
   import "./Checkout.css";
-  import { Link,useLocation } from "react-router-dom";
+  import { Link,useLocation, useNavigate } from "react-router-dom";
   import PageHero from '../../components/UI/PageHero/PageHero';
   import Delivery from '../../components/UI/Delivery/Delivery';
   import OrderSummary from "../../components/UI/OrderSummary/OrderSummary";
+  import { useCart } from '../../hooks/useCart';
+  import { createOrder } from '../../services/api';
 
 
-  export default function Checkout() {
+  export default function Checkout({ user }) {
     const location = useLocation();
     const receivedItems = location.state?.cartitems || []; 
 
@@ -26,8 +28,60 @@
       "16 Alger": ["Sidi M'Hamed", "Bab El Oued", "Dely Ibrahim", "Zeralda"],
     };
 
-    // 2. Move the state INSIDE the component
-    const [selectedWilaya, setSelectedWilaya] = useState("16 Alger");
+    // State
+    const [selectedWilaya, setSelectedWilaya] = useState("");
+    const [selectedBaladiya, setSelectedBaladiya] = useState("");
+    const [wilayaOpen, setWilayaOpen] = useState(false);
+    const [deliveryMethod, setDeliveryMethod] = useState('home');
+    const [paymentMethod, setPaymentMethod] = useState('On Delivery');
+    const [formError, setFormError] = useState("");
+    const wilayaRef = useRef(null);
+    const navigate = useNavigate();
+    const { clearCart } = useCart();
+
+    const shippingFee = deliveryMethod === 'home' ? 500 : 0;
+
+    const handlePlaceOrder = async () => {
+      if (!selectedWilaya || !selectedBaladiya) {
+        setFormError("Please select both your Wilaya and Baladiya to proceed with your order.");
+        return;
+      }
+      setFormError("");
+      
+      const subtotal = receivedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      const totalPrice = subtotal + shippingFee;
+
+      const orderData = {
+        customerName: user?.username || "Guest",
+        phoneNumber: user?.phone || "",
+        wilaya: selectedWilaya,
+        baladiya: selectedBaladiya,
+        deliveryType: deliveryMethod,
+        paymentMethod: paymentMethod,
+        totalPrice,
+        products: receivedItems.map(item => ({ id: item.id, name: item.name, price: item.price, quantity: item.quantity, image: item.image })),
+        status: "Pending"
+      };
+
+      try {
+        await createOrder(orderData);
+        clearCart();
+        navigate("/Profile", { state: { message: "Order placed successfully" } });
+      } catch (error) {
+        alert("Failed to place order: " + error.message);
+      }
+    };
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+      const handleClickOutside = (e) => {
+        if (wilayaRef.current && !wilayaRef.current.contains(e.target)) {
+          setWilayaOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     return (
       <div className="checkout-page">
@@ -38,36 +92,48 @@
             <h1 className="checkout-title">Delivery information</h1>
             <hr className="checkout-hr" />
 
-            <div className="input-group">
-              <label htmlFor="fullname">Full Name</label>
-              <input type="text" id="fullname" placeholder="John Doe" />
-            </div>
-
-            <div className="input-group">
-              <label htmlFor="phone">Phone Number</label>
-              <input type="tel" id="phone" placeholder="0555 00 00 00" />
-            </div>
+            {formError && (
+              <div className="checkout-error-message">
+                <span className="error-icon">⚠️</span>
+                {formError}
+              </div>
+            )}
 
             {/* Wilaya Selection */}
-            <div className="input-group">
-              <label htmlFor="wilaya">Wilaya</label>
-              <select 
-                id="wilaya" 
-                className="checkout-select"
-                value={selectedWilaya}
-                onChange={(e) => setSelectedWilaya(e.target.value)}
+            <div className="input-group" ref={wilayaRef}>
+              <label>Wilaya</label>
+              <div
+                className={`custom-select-trigger ${wilayaOpen ? 'open' : ''}`}
+                onClick={() => setWilayaOpen((o) => !o)}
               >
-                <option value="">Select Wilaya</option>
-                {wilayas.map((w) => (
-                  <option key={w} value={w}>{w}</option>
-                ))}
-              </select>
+                <span>{selectedWilaya || 'Select Wilaya'}</span>
+                <span className="select-chevron">{wilayaOpen ? '▲' : '▼'}</span>
+              </div>
+              {wilayaOpen && (
+                <div className="custom-select-dropdown">
+                  {wilayas.map((w) => (
+                    <div
+                      key={w}
+                      className={`custom-select-option ${selectedWilaya === w ? 'selected' : ''}`}
+                      onClick={() => { setSelectedWilaya(w); setWilayaOpen(false); }}
+                    >
+                      {w}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Baladiya Selection */}
             <div className="input-group">
               <label htmlFor="baladiya">Baladiya</label>
-              <select id="baladiya" className="checkout-select" disabled={!selectedWilaya} >
+              <select 
+                id="baladiya" 
+                className="checkout-select" 
+                disabled={!selectedWilaya}
+                value={selectedBaladiya}
+                onChange={(e) => setSelectedBaladiya(e.target.value)}
+              >
                 <option value="">Select Baladiya</option>
                 {selectedWilaya && baladiyasData[selectedWilaya]?.map((b) => (
                   <option key={b} value={b}>{b}</option>
@@ -81,11 +147,23 @@
               <p className="method-title">Delivery Method</p>
               <div className="radio-group">
                 <label className="radio-option">
-                  <input type="radio" name="deliveryMethod" value="home" defaultChecked />
+                  <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="home"
+                    checked={deliveryMethod === 'home'}
+                    onChange={(e) => setDeliveryMethod(e.target.value)}
+                  />
                   Home Delivery
                 </label>
                 <label className="radio-option">
-                  <input type="radio" name="deliveryMethod" value="office"  />
+                  <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="office"
+                    checked={deliveryMethod === 'office'}
+                    onChange={(e) => setDeliveryMethod(e.target.value)}
+                  />
                   Delivery to Office
                 </label>
               </div>
@@ -97,11 +175,23 @@
               <p className="method-title">Payment Method</p>
               <div className="radio-group">
                 <label className="radio-option">
-                  <input type="radio" name="paymentMethod" value="On Delivery" defaultChecked />
+                  <input 
+                    type="radio" 
+                    name="paymentMethod" 
+                    value="On Delivery" 
+                    checked={paymentMethod === 'On Delivery'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
                   Cash on Delivery
                 </label>
                 <label className="radio-option">
-                  <input type="radio" name="paymentMethod" value="baridimob" />
+                  <input 
+                    type="radio" 
+                    name="paymentMethod" 
+                    value="baridimob" 
+                    checked={paymentMethod === 'baridimob'}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
                   Pay by Baridimob
                 </label>
               </div>
@@ -109,7 +199,7 @@
           </section>
 
           <section className="summary-section">
-          <OrderSummary  cartitems={receivedItems} variant="checkout"/>
+          <OrderSummary cartitems={receivedItems} variant="checkout" shippingFee={shippingFee} onPlaceOrder={handlePlaceOrder} />
           </section>
         </section>
 

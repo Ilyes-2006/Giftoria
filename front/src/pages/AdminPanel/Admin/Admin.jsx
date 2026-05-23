@@ -8,17 +8,17 @@ import AddProduct from '../AdminComponents/SubPages/AddProduct/AddProduct';
 import Orders from '../AdminComponents/SubPages/Orders/Orders';
 // import LogOut from '../AdminComponents/SubPages/LogOut/LogOut';
 
-export default function Admin({products,users,orders}) {
+export default function Admin({products,users,orders, onUpdateOrderStatus, onDeleteOrder, onAddProduct, onUpdateProduct, onDeleteProduct, onDeleteUser}) {
   // 1. Set the default active tab to 'Dashboard'
   const [activeTab, setActiveTab] = useState('Dashboard');
 
   // 2. Data structure for our navigation items
   const menuItems = [
-    { name: 'Dashboard', component: <Dashboard products={products} users={users}/> },
-    { name: 'Users', component: <Users users={users}/> },
-    { name: 'Products', component: <Products products={products} /> },
-    { name: 'Add product', component: <AddProduct products={products}/> },
-    { name: 'Orders', component: <Orders orders={orders}/> },
+    { name: 'Dashboard', component: <Dashboard products={products} users={users} orders={orders} onNavigate={setActiveTab} onDeleteUser={onDeleteUser} onDeleteProduct={onDeleteProduct} onUpdateProduct={onUpdateProduct} onAddProduct={onAddProduct}/> },
+    { name: 'Users', component: <Users users={users} onDeleteUser={onDeleteUser}/> },
+    { name: 'Products', component: <Products products={products} onUpdateProduct={onUpdateProduct} onDeleteProduct={onDeleteProduct}/> },
+    { name: 'Add product', component: <AddProduct products={products} onAddProduct={onAddProduct}/> },
+    { name: 'Orders', component: <Orders orders={orders} onUpdateOrderStatus={onUpdateOrderStatus} onDeleteOrder={onDeleteOrder}/> },
   ];
 
   // 3. Find the currently active item to display its component

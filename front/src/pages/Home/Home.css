@@ -57,11 +57,12 @@
   font-size: 1.4rem;  
   font-weight: 600;  
   border: none;
-  padding: 10px 70px;
-  margin: 30px 25%;
+  padding: 12px 36px;
+  margin: 30px 0;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s ease;
+  white-space: nowrap;
 }
 
 .discover-btn:hover {
@@ -166,30 +167,54 @@
 }
 
 .feature-card {
-  background: var(--surface);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--border);
-  transition: transform 0.2s;
+  background: white;
+  padding: 2.5rem 1.5rem;
+  border-radius: 30px;
+  border: 1px solid #e4e2df;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(44, 64, 111, 0.05);
 }
 
-
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(44, 64, 111, 0.12);
+  border-color: #C9A86A;
+}
 
 .feature-icon {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: #F5F1EB;
+  border-radius: 50%;
+  color: #2C406F;
+  border: 2px solid #e4e2df;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  background: #2C406F;
+  color: #C9A86A;
+  border-color: #2C406F;
 }
 
 .feature-card h3 {
-  margin: 0.5rem 0;
-  font-size: 1.1rem;
-  color: var(--text);
+  margin: 1rem 0 0.5rem;
+  font-size: 1.4rem;
+  color: #1F2A44;
+  font-family: 'Playfair Display', serif;
 }
 
 .feature-card p {
-  color: var(--muted);
+  color: #555;
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-family: 'Instrument Sans', sans-serif;
 }
 .ready-section{
   

@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix back\" \"npm run dev --prefix front\"",
+    "start": "concurrently \"npm start --prefix back\" \"npm run preview --prefix front\""
+  },
+  "dependencies": {
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

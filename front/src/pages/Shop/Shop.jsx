@@ -1,47 +1,54 @@
 import './Shop.css';
-import ProductCard from '../../components/UI/ProductCard/ProductCard';
-import { useState } from 'react';
+import ShopProductCard from '../../components/UI/ShopProductCard/ShopProductCard';
+import { useState, useEffect } from 'react';
 import PageHero from '../../components/UI/PageHero/PageHero';
 import Delivery from '../../components/UI/Delivery/Delivery';
+import { fetchProducts } from '../../services/api';
+import { useCart } from '../../hooks/useCart';
 
 export default function Shop({user}) {
-  // 1. All State definitions must be at the top level of the component
-  const [activeSorts, setActiveSorts] = useState([]);
+  // All State definitions must be at the top level of the component
+  const [products, setProducts] = useState([
+    { id: 1, name: 'Coffret de Chocolats', price: 1200, image: '/assets/product-images/product-image1.jpg', category: 'Birthday' },
+    { id: 2, name: 'Bouquet de Fleurs', price: 1800, image: '/assets/product-images/product-image2.jpg', category: 'Wedding' },
+    { id: 3, name: 'Parfum de Luxe', price: 2800, image: '/assets/product-images/product-image3.jpg', category: 'Anniversary' },
+    { id: 4, name: 'Montre Élégante', price: 3000, image: '/assets/product-images/product-image4.jpg', category: 'luxury' },
+    { id: 5, name: 'Coffret de Vin', price: 2200, image: '/assets/product-images/product-image1.jpg', category: 'Gift boxes' },
+    { id: 6, name: 'Bijoux Fantaisie', price: 1500, image: '/assets/product-images/product-image2.jpg', category: 'Personalized' }
+  ]);
   const [priceDirection, setPriceDirection] = useState('none');
   const [selectedType, setSelectedType] = useState('All Products');
+  const [searchQuery, setSearchQuery] = useState('');
   
-  // 2. Logic functions
+  const { addToCart } = useCart();
+
+  // Load products from backend API
+  useEffect(() => {
+    fetchProducts()
+      .then(data => {
+        if (data && data.length > 0) {
+          const availableProducts = data.filter(p => p.quantity !== 0);
+          setProducts(availableProducts);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to load products from API, using default items:", err);
+      });
+  }, []);
+
   const handleAddToCart = (product) => {
-  console.log("Added to cart:", product);
-  };
-  const toggleSort = (choice) => {
-    setActiveSorts(prev =>
-      prev.includes(choice)
-        ? prev.filter(item => item !== choice)
-        : [...prev, choice]
-    );
+    addToCart(product);
   };
 
   const handlePriceClick = () => {
     if (priceDirection === 'none') {
       setPriceDirection('low');
-      if (!activeSorts.includes('price')) setActiveSorts([...activeSorts, 'price']);
     } else if (priceDirection === 'low') {
       setPriceDirection('high');
     } else {
       setPriceDirection('none');
-      setActiveSorts(activeSorts.filter(item => item !== 'price'));
     }
   };
-
-  const products = [
-    { id: 1, name: 'Coffret de Chocolats', price: 29.99, image: '/assets/product-images/product-image1.jpg' },
-    { id: 2, name: 'Bouquet de Fleurs', price: 49.99, image: '/assets/product-images/product-image2.jpg' },
-    { id: 3, name: 'Parfum de Luxe', price: 79.99, image: '/assets/product-images/product-image3.jpg' },
-    { id: 4, name: 'Montre Élégante', price: 199.99, image: '/assets/product-images/product-image4.jpg' },
-    { id: 5, name: 'Coffret de Vin', price: 59.99, image: '/assets/product-images/product-image1.jpg' },
-    { id: 6, name: 'Bijoux Fantaisie', price: 39.99, image: '/assets/product-images/product-image2.jpg' },
-  ];
 
   const eventTypes = [
     'All Products', 'Anniversary Gifts', 'Graduation Gifts', 
@@ -49,37 +56,64 @@ export default function Shop({user}) {
     'Valentine’s Gifts', 'Wedding Gifts', 'Birthday Gifts'
   ];
 
+  // Filtering by category & search query
+  const filteredProducts = products.filter(product => {
+    // Category match
+    let matchesCategory = true;
+    if (selectedType !== 'All Products') {
+      const cleanType = selectedType.replace(/ Gifts?$/i, '').toLowerCase().trim();
+      const prodCategory = (product.category || '').toLowerCase().trim();
+
+      matchesCategory = prodCategory.includes(cleanType) || cleanType.includes(prodCategory);
+      
+      // Marriage and wedding mapping
+      if (!matchesCategory) {
+        if (cleanType === 'wedding' && prodCategory === 'marriage') matchesCategory = true;
+        if (cleanType === 'marriage' && prodCategory === 'wedding') matchesCategory = true;
+      }
+    }
+
+    // Search query match
+    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          (product.description || '').toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
+
+  // Sorting by price
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (priceDirection === 'low') {
+      return a.price - b.price;
+    }
+    if (priceDirection === 'high') {
+      return b.price - a.price;
+    }
+    return 0;
+  });
+
   return (
     <div className="shop-page">
       <PageHero title="Shop Gifts" subtitle="find the perfect gift for every occasion" />
       <div className='shop-page-main-navbar'>
         <div className="nav-left">
-          <p>Showing <strong>{products.length}</strong> products</p>
+          <p>Showing <strong>{sortedProducts.length}</strong> products</p>
         </div>
 
         <div className="nav-center">
-          <input type="search" placeholder="Search gifts..." className="shop-search-input" />
+          <input 
+            type="search" 
+            placeholder="Search gifts..." 
+            className="shop-search-input" 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </div>
 
         <div className="nav-right">
           <span className="sort-label">Sort by:</span>
 
           <button
-            className={`btn-choice ${activeSorts.includes('popularity') ? 'active' : ''}`}
-            onClick={() => toggleSort('popularity')}
-          >
-            Popularity
-          </button>
-
-          <button
-            className={`btn-choice ${activeSorts.includes('newest') ? 'active' : ''}`}
-            onClick={() => toggleSort('newest')}
-          >
-            Newest
-          </button>
-
-          <button
-            className={`btn-choice price-btn ${activeSorts.includes('price') ? 'active' : ''}`}
+            className={`btn-choice price-btn ${priceDirection !== 'none' ? 'active' : ''}`}
             onClick={handlePriceClick}
           >
             <div className="price-content-wrapper">
@@ -116,17 +150,18 @@ export default function Shop({user}) {
 
         <section className="products-display-section">
           <div className="products-grid">
-            {products.map(product => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              user={user}
-              onAddToCart={handleAddToCart}
-            />            ))}
+            {sortedProducts.map(product => (
+              <ShopProductCard
+                key={product.id}
+                product={product}
+                user={user}
+                onAddToCart={handleAddToCart}
+              />
+            ))}
           </div>
         </section>
       </div>
-     <Delivery></Delivery>
+      <Delivery />
     </div>
   );
 }

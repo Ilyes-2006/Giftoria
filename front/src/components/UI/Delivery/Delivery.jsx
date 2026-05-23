@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import './delivery.css';
+import './Delivery.css';
 export default function Delivery() {
   return (
     <div className="delivery-container">

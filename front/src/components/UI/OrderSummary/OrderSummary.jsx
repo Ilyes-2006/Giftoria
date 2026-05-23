@@ -3,11 +3,12 @@ import "./OrderSummary.css";
 
 import { Link } from "react-router-dom";
 
-export default function OrderSummary({ cartitems=[], variant }) {
+export default function OrderSummary({ cartitems=[], variant, shippingFee = 500, onPlaceOrder }) {
   
+  const isEmpty = cartitems.length === 0;
+  const effectiveShipping = isEmpty ? 0 : shippingFee;
   const subtotal = cartitems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-  const shippingFee = 500;
-  const total = subtotal + shippingFee;  
+  const total = subtotal + effectiveShipping;  
   return (
     <section className="card-main-section card-orders-summary">
         
@@ -29,10 +30,14 @@ export default function OrderSummary({ cartitems=[], variant }) {
                 <span>Subtotal</span>
                 <span className="order-summary-price">{subtotal} DZD</span>
             </div>
-            <div className="cart-summary-row">
-                <span>Shipping</span>
-                <span className="order-summary-price">{shippingFee} DZD</span>
-            </div>
+            {!isEmpty && (
+              <div className="cart-summary-row">
+                  <span>Shipping</span>
+                  <span className="order-summary-price">
+                    {effectiveShipping === 0 ? 'Free' : `${effectiveShipping} DZD`}
+                  </span>
+              </div>
+            )}
         </div>
        
           
@@ -45,7 +50,14 @@ export default function OrderSummary({ cartitems=[], variant }) {
               </Link>
             )}
             {variant === "checkout" && (
-              <button className="btn-checkout">place order</button>
+              <button
+                className="btn-checkout"
+                disabled={isEmpty}
+                style={isEmpty ? { opacity: 0.45, cursor: 'not-allowed' } : {}}
+                onClick={onPlaceOrder}
+              >
+                Place Order
+              </button>
             )}
           </div>
         </section>
