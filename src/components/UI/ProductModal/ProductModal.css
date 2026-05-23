@@ -1,0 +1,137 @@
+.product-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+.product-modal-content {
+  background: #F8F5F0;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 32px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: white;
+  border: none;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1F2A44;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.product-modal-close:hover {
+  background: #f0ece4;
+  transform: scale(1.05);
+}
+
+.product-modal-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}
+
+@media (max-width: 768px) {
+  .product-modal-layout {
+    flex-direction: column;
+  }
+}
+
+.product-modal-image-wrapper {
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-modal-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 400px;
+}
+
+.product-modal-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.product-modal-details h2 {
+  font-family: Instrument Sans, sans-serif;
+  color: #2C406F;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.product-modal-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #C9A86A;
+  margin: 0;
+}
+
+.product-modal-description {
+  margin-top: 16px;
+}
+
+.product-modal-description h3 {
+  font-size: 1.1rem;
+  color: #1F2A44;
+  margin-bottom: 8px;
+}
+
+.product-modal-description p {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.btn-add-cart-modal {
+  margin-top: 24px;
+  background: #C9A86A;
+  color: #1F2A44;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background 0.2s;
+  width: 100%;
+  max-width: 300px;
+}
+
+.btn-add-cart-modal:hover {
+  background: #b69352;
+}

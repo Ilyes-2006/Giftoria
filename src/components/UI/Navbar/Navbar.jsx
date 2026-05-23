@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar({isLoggedIn} ) {
 
+   const [showMoreDropdown, setShowMoreDropdown] = useState(false);
    const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -22,6 +23,12 @@ function Navbar({isLoggedIn} ) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
+
+  useEffect(() => {
+    const closeDropdown = () => setShowMoreDropdown(false);
+    window.addEventListener('click', closeDropdown);
+    return () => window.removeEventListener('click', closeDropdown);
+  }, []);
 
     
     const [searchPlaceholder, setSearchPlaceholder] = useState('Search gifts');
@@ -59,12 +66,35 @@ function Navbar({isLoggedIn} ) {
                 <NavLink to="/cart" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
                     Cart
                 </NavLink>
+                <div className="navbar-more-menu-container">
+                    <button 
+                        type="button" 
+                        className="navbar-more-dots-btn"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setShowMoreDropdown(!showMoreDropdown);
+                        }}
+                        aria-label="More options"
+                    >
+                        ⋮
+                    </button>
+                    {showMoreDropdown && (
+                        <div className="navbar-more-dropdown" onClick={(e) => e.stopPropagation()}>
+                            <Link to="/ContactUs" className="navbar-dropdown-item" onClick={() => setShowMoreDropdown(false)}>
+                                Contact us
+                            </Link>
+                            <Link to="/Faq" className="navbar-dropdown-item" onClick={() => setShowMoreDropdown(false)}>
+                                FAQ
+                            </Link>
+                        </div>
+                    )}
+                </div>
             </nav>
             {isLoggedIn ? (
                 <Link to="/Profile">
                     <button
                         type="button"
-                        className={`btn log-in profile-button${location.pathname === '/profile' ? ' active-profile' : ''}`}
+                        className={`btn log-in profile-button${location.pathname === '/Profile' ? ' active-profile' : ''}`}
                     >
                         Profile
                     </button>

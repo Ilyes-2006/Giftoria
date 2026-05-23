@@ -1,7 +1,8 @@
 
 
-.shop-page{
-    align-items: center;
+.shop-page {
+  background-color: var(--bg, #F5F1EB);
+  align-items: center;
 }
 
 
@@ -13,7 +14,6 @@
   background-color: #F5F1EB;
   padding: 15px 25px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   gap: 15px;
 }
 

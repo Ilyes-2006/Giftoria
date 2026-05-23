@@ -37,6 +37,7 @@ padding: 20px 40px;
 
 .input-group {
   margin-bottom: 20px;
+  position: relative;
 }
 
 .input-group label {
@@ -53,9 +54,86 @@ padding: 20px 40px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-.checkout-select{
-  max-height: 50px;
+.checkout-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: sans-serif;
+  color: #3c3c3c;
+  background-color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Custom Wilaya Dropdown */
+.custom-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: sans-serif;
+  color: #3c3c3c;
+  background-color: #fff;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  user-select: none;
+}
+
+.custom-select-trigger.open,
+.custom-select-trigger:hover {
+  border-color: #2C406F;
+}
+
+.select-chevron {
+  font-size: 0.7rem;
+  color: #888;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.custom-select-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 2px);
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #2C406F;
+  border-radius: 4px;
+  max-height: calc(5 * 40px); /* exactly 5 options */
   overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(44, 64, 111, 0.12);
+}
+
+.custom-select-option {
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: sans-serif;
+  color: #3c3c3c;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s;
+}
+
+.custom-select-option:last-child {
+  border-bottom: none;
+}
+
+.custom-select-option:hover {
+  background-color: #eef1f8;
+}
+
+.custom-select-option.selected {
+  background-color: #2C406F;
+  color: #fff;
+  font-weight: 600;
 }
 .method-title {
   font-weight: bold;
@@ -73,3 +151,47 @@ padding: 20px 40px;
   gap: 8px;
   cursor: pointer;
 }
+
+.shipping-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background-color: #f0e8d5;
+  color: #8a5c00;
+  margin-left: 2px;
+}
+
+.shipping-badge.free {
+  background-color: #d5f0e2;
+  color: #1a7a42;
+}
+
+.checkout-error-message {
+  background-color: #fef2f2;
+  color: #ef4444;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  border: 1px solid #fca5a5;
+  animation: slideInDown 0.3s ease-out forwards;
+}
+
+.checkout-error-message .error-icon {
+  font-size: 1.2rem;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

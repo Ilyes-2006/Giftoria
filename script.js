@@ -10,7 +10,7 @@ function renderProducts(products) {
       <article class="product-card">
         <h3>${product.name}</h3>
         <p>${product.description}</p>
-        <div class="price">$${product.price.toFixed(2)}</div>
+        <div class="price">${product.price.toFixed(2)} DZD</div>
       </article>
     `
     )

@@ -2,42 +2,35 @@
     import { Link } from 'react-router-dom';
     import ProductCard from '../ProductCard/ProductCard';
     import { useCart } from '../../../hooks/useCart';
+    import { fetchProducts } from '../../../services/api';
     import './View-more.css';
 
-    export default function ViewMore({title}) {
+    export default function ViewMore({title, user}) {
     
-    const [loading] = useState(false);
-    const [error] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const { addToCart } = useCart();
 
-    const products = [
-        {
-        id: 1,
-        name: 'Rose Gift Box',
-        image: '/assets/product-images/product-image1.jpg',
-        price: 5890,
-        },
-        {
-        id: 2,
-        name: 'Luxury Candle Set',
-        image: '/assets/product-images/product-image2.jpg',
-        price: 7290,
-        },
-        {
-        id: 3,
-        name: 'Sweet Treat Basket',
-        image: '/assets/product-images/product-image3.jpg',
-        price: 6490,
-        },
-        {
-        id: 4,
-        name: 'Elegant Jewelry Box',
-        image: '/assets/product-images/product-image4.jpg',
-        price: 8450,
-        },
-    ];
-    
-    
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        // Fetch exactly 4 products for the home page preview
+        fetchProducts(4)
+        .then(data => {
+            if (data && data.length > 0) {
+              const availableProducts = data.filter(p => p.quantity !== 0);
+              setProducts(availableProducts);
+            }
+            setLoading(false);
+        })
+        .catch(err => {
+            console.error("Failed to load products from API:", err);
+            setError("Failed to load products");
+            setLoading(false);
+        });
+    }, []);
+
+
 
     return (
         <div className="view-more">
@@ -55,12 +48,13 @@
                 <>
                 <div className="product-grid">
                     {products.length > 0 ? (
-                    products    .slice(0, 4).map((product) => (
+                    products.map((product) => (
                         <ProductCard
                         key={product.id}
                         product={product}
                         image={product.image}
                         onAddToCart={addToCart}
+                        user={user}
                         />
                     ))
                     ) : (
@@ -68,7 +62,7 @@
                     )}
                 </div>
                 <div className="view-more-wrapper">
-                    <Link to="/shop" className="view-more-link">
+                    <Link to="/Shop" className="view-more-link">
                     View more products &gt;
                     </Link>
                 </div>

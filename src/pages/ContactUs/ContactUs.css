@@ -142,3 +142,47 @@
     margin-bottom: 8px;
 }
 
+/* Status feedback message */
+.contactUs-status {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.contactUs-status.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.contactUs-status.error {
+    background: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* Loading / disabled button */
+.contactUs-send-message-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Add padding to inputs so placeholder text isn't flush to edge */
+.contactUs-input input,
+.contactUs-input textarea {
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #1F2A44;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.contactUs-input input:focus,
+.contactUs-input textarea:focus {
+    border-color: #3b5177;
+}
