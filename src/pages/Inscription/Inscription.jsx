@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { registerUser } from "../../services/api";
-import './inscription.css';
+import './Inscription.css';
 
 export default function Inscription() {
   const navigate = useNavigate();
