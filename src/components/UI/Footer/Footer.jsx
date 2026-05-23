@@ -11,18 +11,18 @@ function Footer() {
       
             <div className="footer-left">
                 <div className="footer-logo">
-                    <img src="../assets/gift.png" alt="Gift Icon" className="icon" />
-                    <img src="../assets/giftoria-logo-text.png" alt="Giftoria" className="giftoria" />
+                    <img src="/assets/gift.png" alt="Gift Icon" className="icon" />
+                    <img src="/assets/giftoria-logo-text.png" alt="Giftoria" className="giftoria" />
                 </div>
                 <div className="social-links">
                     <a href="#" className="social-link" aria-label="Facebook">
-                        <img src="../assets/facebook-icon.png" alt="Facebook" />
+                        <img src="/assets/facebook-icon.png" alt="Facebook" />
                     </a>
                     <a href="#" className="social-link" aria-label="Instagram">
-                        <img src="../assets/instagram-icon.png" alt="Instagram" />
+                        <img src="/assets/instagram-icon.png" alt="Instagram" />
                     </a>
                     <a href="#" className="social-link" aria-label="Twitter">
-                        <img src="../assets/twitter-icon.png" alt="Twitter" />
+                        <img src="/assets/twitter-icon.png" alt="Twitter" />
                     </a>
                 </div>
             </div>

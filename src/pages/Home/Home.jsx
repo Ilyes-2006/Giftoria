@@ -49,7 +49,7 @@ export default function Home({ user }) {
           </div>
         </div>
         <div className="hero-image">
-          <img src="../assets/gifts.png" alt="Gift selection" />
+          <img src="/assets/gifts.png" alt="Gift selection" />
         </div>
       </section>
       <ViewMore title="Find the Ideal Gift" user={user}></ViewMore>
