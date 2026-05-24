@@ -13,9 +13,18 @@ function NewProduct({ onAddProduct, categories = [] }) {
   const [message, setMessage] = useState({ text: "", type: "" });
 
   const options = categories.length > 0 ? categories : [
-    "Birthday", "Graduation", "Marriage", "Anniversary", 
-    "Corporate Event", "Baby Shower", "Engagement", 
-    "Holiday Party", "Workshop", "Seminar", "All Events"
+    "Birthday",
+    "Marriage",
+    "Anniversary",
+    "Graduation",
+    "Engagement",
+    "Baby Shower",
+    "Eid & Holidays",
+    "Valentine's Day",
+    "Mother's Day",
+    "Father's Day",
+    "New Year",
+    "Ramadan",
   ];
 
   const handleSelect = (category) => {
@@ -135,22 +144,22 @@ function NewProduct({ onAddProduct, categories = [] }) {
         />
         <hr className="input-divider" />
 
-        <div className="form-group-row" style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
+        <div className="image-url-group">
           {image && (
-            <img 
-              src={image} 
-              alt="Preview" 
-              style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '8px' }} 
-              onError={(e) => e.target.src = '/assets/default-product.jpg'}
+            <img
+              src={image}
+              alt="Preview"
+              className="image-url-preview"
+              onError={(e) => { e.target.style.display = 'none'; }}
+              onLoad={(e)  => { e.target.style.display = 'block'; }}
             />
           )}
-          <input 
+          <input
             type="url"
             placeholder="Product Image URL (e.g. https://example.com/image.jpg)"
             className="form-input"
             value={image}
             onChange={(e) => setImage(e.target.value)}
-            style={{ width: '100%' }}
           />
         </div>
         <hr className="input-divider" />

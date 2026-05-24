@@ -1,16 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./ContactUs.css";
 import PageHero from "../../components/UI/PageHero/PageHero";
 
-export default function ContactUs() {
+export default function ContactUs({ user }) {
   const [form, setForm] = useState({
     fullName: "",
-    email: "",
     subject: "",
     message: "",
   });
-  const [status, setStatus] = useState(null); // { type: 'success'|'error', text: '' }
+  // email is derived from the logged-in user; only editable when logged out
+  const [emailInput, setEmailInput] = useState("");
+  const [error, setError] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const timerRef = useRef(null);
+
+  // Pre-fill full name when user is available
+  useEffect(() => {
+    if (user) {
+      setForm((prev) => ({ ...prev, fullName: user.username || user.name || "" }));
+      setEmailInput(user.email || "");
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,11 +29,12 @@ export default function ContactUs() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus(null);
+    setError(null);
 
-    // Basic client-side validation
-    if (!form.fullName || !form.email || !form.subject || !form.message) {
-      setStatus({ type: "error", text: "Please fill in all fields." });
+    const email = user ? user.email : emailInput;
+
+    if (!form.fullName || !email || !form.subject || !form.message) {
+      setError("Please fill in all fields.");
       return;
     }
 
@@ -31,17 +43,25 @@ export default function ContactUs() {
       const res = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, email }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong.");
-      setStatus({ type: "success", text: data.message });
-      setForm({ fullName: "", email: "", subject: "", message: "" });
+      setShowSuccess(true);
+      setForm({ fullName: user?.username || "", subject: "", message: "" });
+      if (!user) setEmailInput("");
+      // auto-dismiss after 4 s
+      timerRef.current = setTimeout(() => setShowSuccess(false), 4000);
     } catch (err) {
-      setStatus({ type: "error", text: err.message });
+      setError(err.message);
     } finally {
       setLoading(false);
     }
+  };
+
+  const closeSuccess = () => {
+    clearTimeout(timerRef.current);
+    setShowSuccess(false);
   };
 
   return (
@@ -67,15 +87,25 @@ export default function ContactUs() {
               />
             </div>
 
+            {/* Email: auto-filled & read-only when logged in */}
             <div className="contactUs-input">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">
+                Email
+                {user && (
+                  <span className="contactUs-email-badge">
+                    ✓ Using your account email
+                  </span>
+                )}
+              </label>
               <input
                 id="email"
                 type="email"
                 name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="your@email.com"
+                value={user ? user.email : emailInput}
+                onChange={user ? undefined : (e) => setEmailInput(e.target.value)}
+                readOnly={!!user}
+                placeholder={user ? "" : "your@email.com"}
+                className={user ? "contactUs-email-readonly" : ""}
               />
             </div>
 
@@ -102,11 +132,10 @@ export default function ContactUs() {
               />
             </div>
 
-            {/* Status message */}
-            {status && (
-              <div className={`contactUs-status ${status.type}`}>
-                {status.type === "success" ? "✅ " : "❌ "}
-                {status.text}
+            {/* Inline error only */}
+            {error && (
+              <div className="contactUs-status error">
+                ❌ {error}
               </div>
             )}
 
@@ -122,6 +151,20 @@ export default function ContactUs() {
           </form>
         </div>
 
+        {/* ── Success overlay modal ── */}
+        {showSuccess && (
+          <div className="contactUs-success-overlay" onClick={closeSuccess}>
+            <div className="contactUs-success-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="contactUs-success-icon">✉️</div>
+              <h3>Message Sent!</h3>
+              <p>Thank you for reaching out. We'll get back to you as soon as possible.</p>
+              <button className="contactUs-success-close" onClick={closeSuccess}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* ── Info Sidebar ── */}
         <div className="contactUs-card info-sidebar">
           <div className="contactUs-info">
@@ -129,7 +172,7 @@ export default function ContactUs() {
               <i className="fas fa-envelope"></i>
               <h4>Email</h4>
             </div>
-            <p>contact@giftoria.com</p>
+            <p>salahilyes194@gmail.com</p>
           </div>
           <hr />
           <div className="contactUs-info">

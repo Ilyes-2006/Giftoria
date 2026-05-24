@@ -178,7 +178,7 @@ function AppContent() {
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart user={user} loading={loading} />} />
           <Route path="/checkout" element={<Checkout user={user} />} />
-          <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/ContactUs" element={<ContactUs user={user} />} />
           <Route path="/Faq" element={<Faq />} />
           <Route path="/Inscription" element={<Inscription />} />
           <Route path="/Connexion" element={<Connexion setUser={setUser} setIsLoggedIn={setIsLoggedIn} />} />

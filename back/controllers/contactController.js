@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
  * POST /api/contact
  * Body: { fullName, email, subject, message }
  *
- * Sends an email to contact@giftoria.com using the user's email as reply-to.
+ * Sends an email to salahilyes194@gmail.com using the user's email as reply-to.
  *
  * NOTE: Fill in SMTP credentials below.
  * For Gmail, enable "App Passwords" in your Google account and use it here.
@@ -37,7 +37,7 @@ const sendContactEmail = async (req, res) => {
 
   const mailOptions = {
     from: `"Giftoria Contact Form" <${process.env.SMTP_USER || 'your-sending-account@gmail.com'}>`,
-    to: 'contact@giftoria.com',
+    to: 'salahilyes194@gmail.com',
     replyTo: email,                      // Reply goes back to the user
     subject: subject,
     html: `
