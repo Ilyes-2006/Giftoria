@@ -4,7 +4,6 @@ import './NewProduct.css';
 function NewProduct({ onAddProduct, categories = [] }) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [fileName, setFileName] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -18,18 +17,6 @@ function NewProduct({ onAddProduct, categories = [] }) {
     "Corporate Event", "Baby Shower", "Engagement", 
     "Holiday Party", "Workshop", "Seminar", "All Events"
   ];
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFileName(file.name);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleSelect = (category) => {
     setSelectedCategory(category);
@@ -65,7 +52,6 @@ function NewProduct({ onAddProduct, categories = [] }) {
         setName("");
         setPrice("");
         setQuantity("");
-        setFileName("");
         setImage("");
         setSelectedCategory("");
         setDescription("");
@@ -149,18 +135,13 @@ function NewProduct({ onAddProduct, categories = [] }) {
         />
         <hr className="input-divider" />
 
-        <div className="file-input-wrapper">
-          <label htmlFor="file-upload" className="file-label">
-            {fileName ? fileName : "Upload Product Image"}
-          </label>
-          <input 
-            id="file-upload" 
-            type="file" 
-            accept="image/*" 
-            onChange={handleFileChange} 
-            className="hidden-file-input"
-          />
-        </div>
+        <input 
+          type="url"
+          placeholder="Product Image URL (e.g. https://example.com/image.jpg)"
+          className="form-input"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
+        />
         <hr className="input-divider" />
         
         {message.text && (
