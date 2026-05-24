@@ -135,13 +135,24 @@ function NewProduct({ onAddProduct, categories = [] }) {
         />
         <hr className="input-divider" />
 
-        <input 
-          type="url"
-          placeholder="Product Image URL (e.g. https://example.com/image.jpg)"
-          className="form-input"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
+        <div className="form-group-row" style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
+          {image && (
+            <img 
+              src={image} 
+              alt="Preview" 
+              style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '8px' }} 
+              onError={(e) => e.target.src = '/assets/default-product.jpg'}
+            />
+          )}
+          <input 
+            type="url"
+            placeholder="Product Image URL (e.g. https://example.com/image.jpg)"
+            className="form-input"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
+            style={{ width: '100%' }}
+          />
+        </div>
         <hr className="input-divider" />
         
         {message.text && (
