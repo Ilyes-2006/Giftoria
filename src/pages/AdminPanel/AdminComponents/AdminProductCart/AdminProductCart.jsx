@@ -12,7 +12,6 @@ export default function AdminProductCart({ product, onEdit, onRemove }) {
   const [description, setDescription] = useState(product.description || '');
   const [quantity, setQuantity] = useState(product.quantity || 0);
   const [image, setImage] = useState(product.image);
-  const [fileName, setFileName] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -21,18 +20,6 @@ export default function AdminProductCart({ product, onEdit, onRemove }) {
     "Corporate Event", "Baby Shower", "Engagement", 
     "Holiday Party", "Workshop", "Seminar", "All Events"
   ];
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFileName(file.name);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -216,21 +203,16 @@ export default function AdminProductCart({ product, onEdit, onRemove }) {
               </div>
 
               <div className="form-group-row">
-                <label className="form-group-label">Product Image</label>
-                <div className="image-edit-preview-row">
-                  <img src={image || '/assets/default-product.jpg'} alt="Preview" className="image-edit-preview-thumb" />
-                  <div className="image-edit-upload-btn-wrapper">
-                    <label htmlFor={`edit-file-${product.id}`} className="image-edit-upload-btn">
-                      {fileName ? fileName : "Choose Image File"}
-                    </label>
-                    <input 
-                      id={`edit-file-${product.id}`}
-                      type="file" 
-                      accept="image/*" 
-                      onChange={handleFileChange} 
-                      className="hidden-file-input"
-                    />
-                  </div>
+                <label className="form-group-label">Product Image URL</label>
+                <div className="image-edit-preview-row" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <img src={image || '/assets/default-product.jpg'} alt="Preview" className="image-edit-preview-thumb" style={{ alignSelf: 'flex-start' }} />
+                  <input 
+                    type="url"
+                    placeholder="https://example.com/image.jpg"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    className="form-group-input"
+                  />
                 </div>
               </div>
 

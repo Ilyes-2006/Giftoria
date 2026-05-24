@@ -50,21 +50,18 @@ export default function Shop({user}) {
     }
   };
 
-  const eventTypes = [
-    'All Products', 'Anniversary Gifts', 'Graduation Gifts', 
-    'Personalized Gifts', 'Gift boxes', 'luxury Gifts', 
-    'Valentine’s Gifts', 'Wedding Gifts', 'Birthday Gifts'
-  ];
+  const dynamicCategories = Array.from(new Set(products.map(p => (p.category || 'General').trim())));
+  const eventTypes = ['All Products', ...dynamicCategories];
 
   // Filtering by category & search query
   const filteredProducts = products.filter(product => {
     // Category match
     let matchesCategory = true;
     if (selectedType !== 'All Products') {
-      const cleanType = selectedType.replace(/ Gifts?$/i, '').toLowerCase().trim();
+      const cleanType = selectedType.toLowerCase().trim();
       const prodCategory = (product.category || '').toLowerCase().trim();
 
-      matchesCategory = prodCategory.includes(cleanType) || cleanType.includes(prodCategory);
+      matchesCategory = prodCategory === cleanType;
       
       // Marriage and wedding mapping
       if (!matchesCategory) {

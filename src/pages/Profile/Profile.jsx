@@ -39,17 +39,6 @@ export default function Profile({ orders, user, handleLogout }) {
   
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setEditImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
     if (!currentPassword || !newPassword) {
@@ -229,7 +218,7 @@ export default function Profile({ orders, user, handleLogout }) {
                     setEditImage(user.image || "");
                     setIsEditingProfile(true);
                     setMessage(null);
-                  }}>Eddit My Profile</button>
+                  }}>Edit My Profile</button>
                   <button className="btn-delete" onClick={() => setShowLogoutConfirm(true)}>Delete my account</button>
                 </div>
               </section>
@@ -244,21 +233,19 @@ export default function Profile({ orders, user, handleLogout }) {
               <h3>Edit Profile</h3>
               <p>Update your personal information below.</p>
               
-              <div className="profile-edit-avatar-section">
+              <div className="profile-edit-avatar-section" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                 <img 
                   src={editImage || "/assets/product-images/product-image2.jpg"} 
                   alt="edit avatar" 
                   className="profile-edit-avatar-preview" 
                 />
-                <label htmlFor="edit-avatar-upload" className="btn-edit-avatar-upload">
-                  Change Photo
-                </label>
                 <input 
-                  type="file" 
-                  id="edit-avatar-upload" 
-                  accept="image/*" 
-                  onChange={handleImageChange} 
-                  style={{ display: "none" }}
+                  type="url" 
+                  placeholder="Profile Image URL" 
+                  className="form-input" 
+                  value={editImage}
+                  onChange={(e) => setEditImage(e.target.value)}
+                  style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid #ddd' }}
                 />
               </div>
 
