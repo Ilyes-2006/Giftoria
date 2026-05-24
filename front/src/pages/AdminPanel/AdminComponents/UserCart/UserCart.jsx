@@ -62,4 +62,4 @@ export default function UserCart({ user, onRemove }) {
       )}
     </div>
   );
-}
+}

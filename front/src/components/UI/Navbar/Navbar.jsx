@@ -38,9 +38,9 @@ function Navbar({isLoggedIn} ) {
         <header className="header" style={{ top: isVisible ? '0' : '-100px' }}>
             <div className="logo">
                 <NavLink to="/">
-                    <img src="../assets/gift.png" alt="Gift icon" className="gift-icon" />
+                    <img src="/assets/gift.png" alt="Gift icon" className="gift-icon" />
                 </NavLink>
-                <img src="../assets/giftoria-logo-text.png" alt="Giftoria logo" className="logo-image" />
+                <img src="/assets/giftoria-logo-text.png" alt="Giftoria logo" className="logo-image" />
             </div>
             <div className="search-bar">
                 <div className="search-field">

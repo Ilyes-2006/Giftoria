@@ -158,4 +158,4 @@ function NewProduct({ onAddProduct, categories = [] }) {
   );
 }
 
-export default NewProduct;
+export default NewProduct;

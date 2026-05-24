@@ -231,4 +231,4 @@ export default function AdminProductCart({ product, onEdit, onRemove }) {
       )}
     </div>
   );
-}
+}

@@ -29,8 +29,8 @@ export default function Admin({products,users,orders, onUpdateOrderStatus, onDel
       {/* Sidebar */}
       <aside className="admin-sidebar">
         <div className="admin-logo-box">
-          <img src="assets/gift.png" alt="giftoria logo" className='admin-giftoria-image' />
-          <img src="assets/admin-giftoria-text.png" alt="giftoria logo text" className='admin-giftoria-logo' />
+          <img src="/assets/gift.png" alt="giftoria logo" className='admin-giftoria-image' />
+          <img src="/assets/admin-giftoria-text.png" alt="giftoria logo text" className='admin-giftoria-logo' />
         </div>
 
         <nav className="admin-nav-menu">
