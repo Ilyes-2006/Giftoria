@@ -1,0 +1,171 @@
+
+.cart-page {
+ 
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 50px;
+  margin: 0 0;
+}
+
+/* Title Section Styling */
+.cart-title-section {
+  text-align: center;
+  margin: 100px auto 80px auto;
+}
+
+.cart-title-section h1 {
+  font-size: 4rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #243660;
+}
+
+.cart-title-section p {
+  font-size: 1.5rem;
+  color: #2F2E2E;
+}
+
+/* Dividers */
+.divider-main {
+  width: 85%;
+  border: none;
+  border-top: 2px solid #d8d4cd;
+  margin: 80px auto;
+}
+
+.divider-sub {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #d8d4cd;
+  margin: 40px auto 40px auto;
+}
+.divider-sub2 {
+  margin: 40px auto 20px auto;
+}
+
+/* Main Layout Grid */
+.cart-main {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin: 35px 7.5%;
+}
+
+/* Shared Card Styling */
+.card-main-section {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  padding: 40px 7%;
+}
+
+.cart-orders {
+  flex: 2; /* Takes more space */
+}
+
+.card-orders-summary {
+  flex: 1; /* Takes less space */
+  height:fit-content ;
+ 
+}
+
+/* Order Item Styling */
+.card-order {
+  display: flex;
+  align-items: center;
+}
+
+.order-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 22px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.card-order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+  margin-left: 30px;
+}
+
+.order-name {
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-family: 'inter', sans-serif;
+  font-weight: 550;
+  color: #2C406F;
+
+}
+
+.order-desc {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.price-div {
+  display: flex;
+  gap: 5px;
+  font-weight: 600;
+}
+
+/* Action Buttons (Quantity & Remove) */
+.order-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid #7F7F7F;
+  border-radius: 8px;
+  font-family: 'inter', sans-serif;
+  font-weight: 400;
+  overflow: hidden;
+  
+}
+
+.quantity-controls button {
+  background: #F5F1EB;
+  border: none;
+  width: 42px;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.quantity-controls button {
+  background: #F5F1EB;
+  transition: background 0.3s;
+}
+
+.quantity-controls button.disabled-btn {
+  background-color: #cacaca; /* Darker color for "non-clickable" look */
+  color: #717171;
+  cursor:not-allowed;
+}
+.quantity-controls span {
+  font-weight: bold;
+  padding: 0 10px;
+  font-size: 1.1rem;
+}
+
+.btn-remove {
+  background-color: #2C406F;
+  color: white;
+  font-family: 'inter', sans-serif;
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 9px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+.btn-remove:hover {
+  opacity: 0.9;
+}
+
+

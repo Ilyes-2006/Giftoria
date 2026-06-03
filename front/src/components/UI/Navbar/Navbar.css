@@ -1,0 +1,186 @@
+/* Header */
+.header {
+    background-color: #1F2A44;
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 28px;
+    position: fixed;
+    transition: top 0.5s;
+    top: 0;
+    z-index: 1000;
+    
+    
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.gift-icon {
+    width: 38px;
+    height: auto;
+    margin-right: -10px;
+    margin-left: 10px;
+
+}
+
+.logo-image {
+    height: 60px;
+    object-fit: contain;
+    margin-left: -10px;
+}
+
+.site-name {
+    color: #C9A86A;
+}
+
+.search-bar {
+    flex: 1 1 420px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-field {
+    width:100%;
+    max-width: 310px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 8px;
+    background: white;
+    border: 1px solid #d8d4cd;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(31, 42, 68, 0.08);
+    margin: 5px auto 0px auto;
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+    margin: auto 10px;
+}
+
+.search-input {
+    width: 100%;
+    height: auto;
+    border: none;
+    outline: none;
+    padding: 0 12px;
+    background: transparent;
+    color: #1F2A44;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.search-input::placeholder {
+    color: #1F2A44;
+    opacity: 0.8;
+}
+
+.search-input:focus {
+    background: transparent;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 260px;
+    min-width: 240px;
+}
+
+
+.nav button {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 14px;
+}
+
+.nav-link.active {
+    color: #C9A86A;
+}
+
+.profile-button,
+.btn.log-in {
+    background: white;
+    color: #1F2A44;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3px 15px;
+}
+
+.nav a:hover,
+.nav button:hover {
+    background: rgba(255, 255, 255, 0.225);
+}
+
+.profile-button.active-profile {
+    background: #C9A86A;
+    color: white;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn.sign-in {
+    background: #C9A86A;
+    color: #1F2A44;
+    padding: 3px 15px; 
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 15px;  
+    
+    cursor: pointer;
+}
+
+.btn.log-in {
+    background: white;
+    color: #1F2A44;
+    border-radius: 12px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    padding: 3px 15px;
+}   
+
+
+.btn.log-in {
+    background: white;
+    color: #1F2A44;
+}

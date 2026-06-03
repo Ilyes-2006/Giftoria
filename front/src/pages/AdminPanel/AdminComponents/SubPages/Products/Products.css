@@ -1,0 +1,24 @@
+.products-page-container {
+  /* padding: 40px; */
+  background-color: #f5f2eb;
+  /* min-height: 100vh; */
+  font-family: 'Georgia', serif;
+}
+
+
+
+
+
+.products-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  max-width: 800px;
+  margin: 20px auto 0 auto;
+}
+
+@media (max-width: 768px) {
+  .products-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
